@@ -6,32 +6,45 @@ let places={
   Hyderabad:["Charminar","Golconda Fort","Ntr Garden","Nehru Zoological Park","Lumbini Park"],
   Mumbai:["Gateway of India","Sanjay Gandhi National Park","Red Carpet Wax Museum","Elephanta Caves","Shri Mahalakshmi Temple"]
 }
-function App() {
- 
-  let data=["Wonderla","Nandhi Hills","Snow City","UB City","Brigade Road",
+let data=["Wonderla","Nandhi Hills","Snow City","UB City","Brigade Road",
   "Charminar","Golconda Fort","Ntr Garden","Nehru Zoological Park","Lumbini Park",
   "Gateway of India","Sanjay Gandhi National Park","Red Carpet Wax Museum",
   "Elephanta Caves","Shri Mahalakshmi Temple"];
-  const [display,setDisplay]=useState(data);
+let display=data;
+
+
+function App() {
   const [city,setCity]=useState(["Bangalore","Hyderabad","Mumbai"]);
+  console.log(display);
+
+
   let onChangeCity=(event)=>{
-  setCity([event.target.value]);
-  if(city[0]==="Bangalore")
-  setDisplay(places.Bangalore);
-  else if(city[0]==="Hyderabad")
-  setDisplay(places.Hyderabad);
-  else
-  setDisplay(places.Mumbai);
+  setCity(new Array(event.target.value));
+  
   }
+
+  
   return (
     <div className="App">
       <div>
       <select onChange={onChangeCity}>
       <option selected hidden value=""></option>
+      <option  value="Selected All">Select All</option>
         <option value="Bangalore">Bangalore</option>
         <option  value="Hyderabad">Hyderabad</option>
         <option value="Mumbai">Mumbai</option>
-      </select></div>
+      </select></div>{
+        (()=>{if(city.length===1){
+          if(city[0]==="Bangalore")
+        display=places.Bangalore;
+        else if(city[0]==="Hyderabad")
+        display=places.Hyderabad;
+        else if(city[0]==="Mumbai")
+        display=places.Mumbai;
+        else
+        setCity(["Bangalore","Hyderabad","Mumbai"]);
+      }})()
+      }
       <div><select>{
       display.map((item,index)=><option value={item}>{item}</option>)}
       </select></div>
@@ -44,8 +57,10 @@ function App() {
           return (places.Bangalore.map((item,index)=><tr><td className="">{item}</td></tr>))
           else if(item==="Hyderabad")
           return (places.Hyderabad.map((item,index)=><tr><td className="">{item}</td></tr>))
-          else
+          else if(item==="Mumbai")
           return (places.Mumbai.map((item,index)=><tr><td className="">{item}</td></tr>))
+          else 
+          return (data.map((item,index)=><tr><td className="">{item}</td></tr>))
       })()}
         </tbody>
       </table>)}
