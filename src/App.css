@@ -1,12 +1,11 @@
-.App {
-  text-align: center;
-}
+
 #root{
   margin: 30px;
 }
 select{
-  margin:10px;
+  margin:5px;
   height: 30px;
+  width:200px;
 }
 table,td{
   margin-top:50px;
@@ -15,7 +14,35 @@ table,td{
   text-align: center;
   border:1px solid black;
   border-collapse: collapse;
+  padding:0px;
 }
+#row1{
+border-top:0px;
+}
+#row5{
+  border-bottom:0px;
+  }
+.insideTableRow{
+  margin-right:0%;
+  border:1px solid black;
+  border-left:0px;
+  border-right:0px;
+  
+}
+
+.insideTable{
+  margin:0px;
+  width:100%;
+  border:0px;
+}
+.insideTableBody{
+  
+  margin-left:100px;
+  margin-right:0px;
+  padding:0px;
+  
+}
+
 .center{
   display:block;
   margin-left:auto;
